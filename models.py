@@ -198,7 +198,11 @@ class AllocationModel(LexicoSolver):
         # plot calendar intervals as darkened bars
                 
         for _, task in sol.iterrows():
-            plot_task(ax, task['start'], task['end'], teams.index(task['assigned_team']), task['task_id'], **kwargs)
+            index_team = len(teams) # virtual unallocated team.
+            if task['assigned_team'] in teams:
+                index_team = teams.index(task['assigned_team'])
+
+            plot_task(ax, task['start'], task['end'], index_team, task['task_id'], **kwargs)
 
         for _, cal in self.calendars.iterrows():
             if cal['team_id'] in teams:
@@ -207,10 +211,11 @@ class AllocationModel(LexicoSolver):
         ax.set_xlabel("Time in minutes")
         ax.set_ylabel("Team")
         ax.set_title("Solution to the allocation problem")
-        ax.set_yticks(list(range(len(teams))), teams)
+        ax.set_yticks(list(range(len(teams)+1)), teams+["Unset"])
     
         return fig, ax
         
+
 
 
 class SchedulingModel(AllocationModel):
@@ -295,7 +300,7 @@ class SchedulingModel(AllocationModel):
         """
         solution = self.tasks[['task_id', 'original_start', 'original_end']].copy()
         assigned_teams = np.sum(self.alloc.value() * np.arange(1,len(self.TEAMS)+1), axis=1)
-        solution['assigned_team'] = [self.TEAMS[idx-1] if idx > 0 else "Unallocacted" for idx in assigned_teams]
+        solution['assigned_team'] = [self.TEAMS[idx-1] if idx > 0 else "Unallocated" for idx in assigned_teams]
         solution['start'] = self.start.value()
         solution['end'] = self.end.value()
         return solution

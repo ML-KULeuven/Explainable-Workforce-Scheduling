@@ -57,9 +57,10 @@ class FeasibilityResotorationModel(SchedulingModel):
         fig, ax = super().visualize_solution(sol=self.original_solution, fig=fig, ax=ax)
         teams = sorted(set(self.original_solution['assigned_team']))
         for _, disruption in self.disruption.iterrows():
-            plot_task(ax, disruption['start_unavailable'], disruption['end_unavailable'],
-                      teams.index(disruption['team_id']),
-                      facecolor='red', alpha=0.5,hatch="//", height=0.8)
+            if disruption["team_id"] in teams:
+                plot_task(ax, disruption['start_unavailable'], disruption['end_unavailable'],
+                          teams.index(disruption['team_id']),
+                          facecolor='red', alpha=0.5,hatch="//", height=0.8)
             
         ax.set_title("Original solution with disruptions")
         return fig, ax
@@ -87,16 +88,24 @@ class FeasibilityResotorationModel(SchedulingModel):
         for i, orig_sol in changed.iterrows():
             new_sol = repaired_sol.loc[i]
             duration = orig_sol['end'] - orig_sol['start']
+            index_orig_sol = len(used_teams)
+            index_new_sol = len(used_teams)
+            if orig_sol['assigned_team'] in used_teams:
+                index_orig_sol = used_teams.index(orig_sol['assigned_team'])
+            if new_sol['assigned_team'] in used_teams:
+                index_new_sol = used_teams.index(new_sol["assigned_team"])
+
             ax.annotate("", xycoords='data',
-                            xytext=(orig_sol['start']+duration//2, used_teams.index(orig_sol['assigned_team'])), 
-                            xy=    (new_sol['start']+duration//2, used_teams.index(new_sol['assigned_team'])), 
+                            xytext=(orig_sol['start']+duration//2, index_orig_sol),
+                            xy=    (new_sol['start']+duration//2, index_new_sol),
                             arrowprops=dict(arrowstyle="->", edgecolor="red"),
             )
 
         for _, disruption in self.disruption.iterrows():
-            plot_task(ax, disruption['start_unavailable'], disruption['end_unavailable'],
-                      used_teams.index(disruption['team_id']),
-                      facecolor='red', alpha=0.5,hatch="//", height=0.8)
+            if disruption["team_id"] in used_teams:
+                plot_task(ax, disruption['start_unavailable'], disruption['end_unavailable'],
+                          used_teams.index(disruption['team_id']),
+                          facecolor='red', alpha=0.5, hatch="//", height=0.8)
             
         ax.set_title("Repaired solution using re-allocation and re-scheduling of tasks")
 
