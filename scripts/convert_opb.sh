@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Directory containing the JSON files
-INPUT_DIR="./data/anon_jsons"
-OUTPUT_DIR="./data/opb_instances"
-PYTHON_SCRIPT="./scripts/opb_instances.py"
+INPUT_DIR="../data/anon_jsons"
+OUTPUT_DIR="../data/opb_instances"
+PYTHON_SCRIPT="../scripts/print_opb.py"
 DO_SYMMBREAK="false"
 
 # Modify output directory based on symmetry breaking flag
@@ -17,6 +17,7 @@ mkdir -p "$OUTPUT_DIR"
 
 # Loop over all .json files in the directory
 for file in "$INPUT_DIR"/*.json; do
+
     # Check if the file actually exists (to avoid issues if no .json files)
     [ -e "$file" ] || continue
 
@@ -26,11 +27,12 @@ for file in "$INPUT_DIR"/*.json; do
     # Define the output file with .opb extension
     output_file="$OUTPUT_DIR/$base_name.opb"
 
+    echo "Processing file $file -> $output_file"
+
     # Call the Python script and capture its output
     result=$(python3 "$PYTHON_SCRIPT" "$file" "$DO_SYMMBREAK")
 
     # Write the output to the new file
     echo "$result" > "$output_file"
 
-    echo "Processed $file -> $output_file"
 done
