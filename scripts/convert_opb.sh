@@ -4,7 +4,7 @@
 INPUT_DIR="../data/anon_jsons"
 OUTPUT_DIR="../data/opb_instances"
 PYTHON_SCRIPT="../scripts/print_opb.py"
-DO_SYMMBREAK="false"
+DO_SYMMBREAK="true"
 
 # Modify output directory based on symmetry breaking flag
 if [ "$DO_SYMMBREAK" == "true" ]; then
