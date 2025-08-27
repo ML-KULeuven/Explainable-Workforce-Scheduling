@@ -15,7 +15,13 @@ if __name__ == "__main__":
     import cpmpy as cp
 
     fname = sys.argv[1]
-    do_symmbreak = bool(sys.argv[2])
+    if sys.argv[2] == "true":
+        do_symmbreak = True
+    elif sys.argv[2] == "false":
+        do_symmbreak = False
+    else:
+        raise ValueError("Invalid argument for symmetry breaking: %s" % sys.argv[2])
+    
     tasks, calendars, same_allocation = read_instance(fname)
 
     model = AllocationModel(tasks, calendars, same_allocation, 
@@ -25,4 +31,8 @@ if __name__ == "__main__":
     model.minimize(model.get_nb_teams_objective())
 
     
-    cp.SolverLookup.get("exact", model).native_model.printInput()
+    solver = cp.SolverLookup.get("exact", model)
+    solver.native_model.printFormula()
+    # solver.solve(time_limit=10)
+    # print(solver.status())
+    # solver.solve(model)
