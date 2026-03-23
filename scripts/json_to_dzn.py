@@ -98,9 +98,8 @@ def build_instance_dzn(json_path: Path) -> str:
 
     n_same_groups = len(same_groups_cases)
 
-    # Optional: add a comment about how groups map.
     lines: list[str] = []
-    lines.append(f"% Generated from {json_path.name} using utils.read_instance()")
+    lines.append(f"% Generated from {json_path.name}")
     lines.append(format_enum_def("Team", "team", len(team_ids)))
     lines.append(format_enum_def("Task", "task", len(task_ids)))
     lines.append("")
@@ -116,7 +115,7 @@ def build_instance_dzn(json_path: Path) -> str:
     # scheduling_model expects: array[1..nSameGroups] of set of Task
     lines.append(f"same_allocation = [{', '.join(same_groups_cases)}];")
     lines.append("")
-
+    
     lines.append(f"calendars = [")
     if len(teams_df) > 0: # there is some calendar data
         for team_id in team_ids:
