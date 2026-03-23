@@ -61,11 +61,11 @@ array[Team] of var bool: Used = [exists([Alloc[task] == team | task in Task]) | 
 % Time worked for each team, only if the team is used
 array[Team] of var opt int: TimeWorked = [sum([duration[task] | task in Task where Alloc[task] == team]) | team in Team where Used[team]];
 
-% Bi-level optimization problem:
+% Bi-objective optimization problem:
 % - minimize the number of teams used
 % - minimize the unfairness between teams (difference in max/min time worked)
-solve minimize sum(duration) * nvalue(Alloc) + 
-              (max(TimeWorked) - min(TimeWorked));
+solve minimize sum(duration) * nvalue(Alloc) 
+              + (max(TimeWorked) - min(TimeWorked));
 
 output [ "Number of used teams:", show(sum(Used)), 
         "\nAllocation: ", show(Alloc),
