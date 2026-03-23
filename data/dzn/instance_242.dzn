@@ -11,5 +11,43 @@ compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 same_allocation = [{task_14, task_39}, {task_51, task_68}, {task_55, task_69}, {task_9, task_44}, {task_1, task_92}, {task_71, task_75}, {task_10, task_33, task_48}, {task_11, task_77}, {task_50, task_57, task_85, task_86}, {task_76, task_99}, {task_20, task_93}, {task_84, task_94}];
 
+successors = [
+    (task: task_18, successors: {task_69, task_13}),
+    (task: task_14, successors: {task_39}),
+    (task: task_15, successors: {task_19}),
+    (task: task_44, successors: {task_9}),
+    (task: task_39, successors: {task_11}),
+    (task: task_51, successors: {task_68}),
+    (task: task_36, successors: {task_28}),
+    (task: task_92, successors: {task_1}),
+    (task: task_54, successors: {task_16}),
+    (task: task_63, successors: {task_33}),
+    (task: task_30, successors: {task_49}),
+    (task: task_19, successors: {task_57, task_100}),
+    (task: task_82, successors: {task_59}),
+    (task: task_17, successors: {task_5}),
+    (task: task_8, successors: {task_46, task_34}),
+    (task: task_31, successors: {task_95}),
+    (task: task_28, successors: {task_70, task_50}),
+    (task: task_35, successors: {task_61}),
+    (task: task_100, successors: {task_96, task_57}),
+    (task: task_33, successors: {task_10}),
+    (task: task_77, successors: {task_11}),
+    (task: task_95, successors: {task_6}),
+    (task: task_70, successors: {task_56}),
+    (task: task_6, successors: {task_91}),
+    (task: task_57, successors: {task_85}),
+    (task: task_50, successors: {task_86}),
+    (task: task_91, successors: {task_81}),
+    (task: task_85, successors: {task_25}),
+    (task: task_10, successors: {task_48}),
+    (task: task_53, successors: {task_37}),
+    (task: task_86, successors: {task_43}),
+    (task: task_99, successors: {task_76}),
+    (task: task_37, successors: {task_4}),
+    (task: task_4, successors: {task_62}),
+    (task: task_20, successors: {task_93}),
+    (task: task_94, successors: {task_84}),
+];
 calendars = [
 ];

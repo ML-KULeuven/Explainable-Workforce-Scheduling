@@ -11,5 +11,24 @@ compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 same_allocation = [{task_34, task_42}, {task_33, task_36}, {task_10, task_22}, {task_2, task_18}];
 
+successors = [
+    (task: task_14, successors: {task_19}),
+    (task: task_23, successors: {task_44}),
+    (task: task_34, successors: {task_42}),
+    (task: task_4, successors: {task_5}),
+    (task: task_1, successors: {task_9}),
+    (task: task_33, successors: {task_36}),
+    (task: task_10, successors: {task_22}),
+    (task: task_36, successors: {task_35}),
+    (task: task_22, successors: {task_15}),
+    (task: task_35, successors: {task_32}),
+    (task: task_7, successors: {task_43}),
+    (task: task_11, successors: {task_25}),
+    (task: task_25, successors: {task_41}),
+    (task: task_21, successors: {task_38}),
+    (task: task_41, successors: {task_18}),
+    (task: task_38, successors: {task_13}),
+    (task: task_18, successors: {task_2}),
+];
 calendars = [
 ];

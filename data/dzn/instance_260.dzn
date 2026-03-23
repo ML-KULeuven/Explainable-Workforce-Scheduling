@@ -11,5 +11,36 @@ compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 same_allocation = [{task_14, task_31}, {task_51, task_79}, {task_12, task_59}, {task_30, task_52}, {task_32, task_42, task_71}, {task_2, task_54}, {task_39, task_43}, {task_10, task_83}, {task_20, task_72}, {task_62, task_65}, {task_26, task_33}];
 
+successors = [
+    (task: task_22, successors: {task_34}),
+    (task: task_14, successors: {task_31}),
+    (task: task_29, successors: {task_6}),
+    (task: task_5, successors: {task_81}),
+    (task: task_79, successors: {task_51}),
+    (task: task_66, successors: {task_80}),
+    (task: task_35, successors: {task_41}),
+    (task: task_34, successors: {task_61}),
+    (task: task_59, successors: {task_12}),
+    (task: task_3, successors: {task_73}),
+    (task: task_81, successors: {task_18}),
+    (task: task_80, successors: {task_24}),
+    (task: task_8, successors: {task_7}),
+    (task: task_61, successors: {task_74}),
+    (task: task_7, successors: {task_54}),
+    (task: task_18, successors: {task_20}),
+    (task: task_52, successors: {task_30}),
+    (task: task_42, successors: {task_71}),
+    (task: task_71, successors: {task_32}),
+    (task: task_2, successors: {task_54}),
+    (task: task_43, successors: {task_39}),
+    (task: task_74, successors: {task_72}),
+    (task: task_54, successors: {task_48}),
+    (task: task_20, successors: {task_57}),
+    (task: task_72, successors: {task_67}),
+    (task: task_62, successors: {task_65}),
+    (task: task_53, successors: {task_64}),
+    (task: task_64, successors: {task_49}),
+    (task: task_49, successors: {task_69}),
+];
 calendars = [
 ];

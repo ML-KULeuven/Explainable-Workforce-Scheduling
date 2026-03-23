@@ -11,5 +11,43 @@ compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 same_allocation = [{task_51, task_80}, {task_14, task_93}, {task_60, task_101}, {task_26, task_94}, {task_8, task_70}, {task_11, task_27}, {task_52, task_77, task_78}, {task_96, task_99}, {task_38, task_45, task_64, task_91}, {task_25, task_71}, {task_29, task_41}, {task_40, task_90}];
 
+successors = [
+    (task: task_58, successors: {task_60, task_68}),
+    (task: task_80, successors: {task_51}),
+    (task: task_6, successors: {task_22}),
+    (task: task_94, successors: {task_26}),
+    (task: task_51, successors: {task_99}),
+    (task: task_93, successors: {task_14}),
+    (task: task_83, successors: {task_87}),
+    (task: task_8, successors: {task_70}),
+    (task: task_43, successors: {task_5}),
+    (task: task_19, successors: {task_77}),
+    (task: task_13, successors: {task_55}),
+    (task: task_22, successors: {task_4, task_38}),
+    (task: task_18, successors: {task_36}),
+    (task: task_73, successors: {task_16}),
+    (task: task_66, successors: {task_10, task_44}),
+    (task: task_102, successors: {task_28}),
+    (task: task_87, successors: {task_24, task_64}),
+    (task: task_95, successors: {task_72}),
+    (task: task_4, successors: {task_67, task_38}),
+    (task: task_77, successors: {task_78}),
+    (task: task_96, successors: {task_99}),
+    (task: task_28, successors: {task_15}),
+    (task: task_24, successors: {task_75}),
+    (task: task_15, successors: {task_42}),
+    (task: task_38, successors: {task_45}),
+    (task: task_64, successors: {task_91}),
+    (task: task_42, successors: {task_86}),
+    (task: task_45, successors: {task_35}),
+    (task: task_78, successors: {task_52}),
+    (task: task_46, successors: {task_56}),
+    (task: task_91, successors: {task_12}),
+    (task: task_25, successors: {task_71}),
+    (task: task_56, successors: {task_39}),
+    (task: task_39, successors: {task_74}),
+    (task: task_41, successors: {task_29}),
+    (task: task_90, successors: {task_40}),
+];
 calendars = [
 ];

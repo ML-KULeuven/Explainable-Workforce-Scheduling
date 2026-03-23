@@ -11,5 +11,43 @@ compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 same_allocation = [{task_6, task_77}, {task_35, task_57}, {task_45, task_69}, {task_8, task_42}, {task_23, task_66}, {task_26, task_27}, {task_51, task_53}, {task_24, task_43, task_65}, {task_40, task_46}, {task_39, task_64}, {task_29, task_62}, {task_38, task_93}, {task_12, task_48, task_91}];
 
+successors = [
+    (task: task_84, successors: {task_44}),
+    (task: task_77, successors: {task_6}),
+    (task: task_57, successors: {task_35}),
+    (task: task_89, successors: {task_67}),
+    (task: task_60, successors: {task_74}),
+    (task: task_45, successors: {task_69}),
+    (task: task_37, successors: {task_87}),
+    (task: task_70, successors: {task_13}),
+    (task: task_69, successors: {task_24}),
+    (task: task_52, successors: {task_32}),
+    (task: task_46, successors: {task_40}),
+    (task: task_83, successors: {task_68}),
+    (task: task_27, successors: {task_26}),
+    (task: task_51, successors: {task_53}),
+    (task: task_3, successors: {task_48}),
+    (task: task_23, successors: {task_66}),
+    (task: task_40, successors: {task_5}),
+    (task: task_56, successors: {task_12}),
+    (task: task_24, successors: {task_65}),
+    (task: task_42, successors: {task_8}),
+    (task: task_16, successors: {task_91}),
+    (task: task_65, successors: {task_43}),
+    (task: task_53, successors: {task_38}),
+    (task: task_39, successors: {task_64}),
+    (task: task_8, successors: {task_55}),
+    (task: task_49, successors: {task_34}),
+    (task: task_62, successors: {task_29}),
+    (task: task_38, successors: {task_93}),
+    (task: task_93, successors: {task_88}),
+    (task: task_15, successors: {task_19}),
+    (task: task_68, successors: {task_82}),
+    (task: task_63, successors: {task_47}),
+    (task: task_76, successors: {task_58}),
+    (task: task_47, successors: {task_28}),
+    (task: task_55, successors: {task_73}),
+    (task: task_73, successors: {task_9}),
+];
 calendars = [
 ];
