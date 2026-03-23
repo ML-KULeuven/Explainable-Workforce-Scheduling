@@ -64,9 +64,19 @@ def read_instance(json_file):
             ))
 
     teams_df = pd.DataFrame(teams_data)
-    same_allocation = [set(x) for x in data['same_allocation']]
 
-    return task_df, teams_df, same_allocation
+    same_allocation = [set(x) for x in data['same_allocation']]
+    # some groups can be merged
+    same_alloc_merged = []
+    for group in same_allocation:
+        for grp in same_alloc_merged:
+            if grp & group:
+                grp.update(group)
+                break
+        else:
+            same_alloc_merged.append(set(group))
+
+    return task_df, teams_df, same_alloc_merged
 
 
 class LexicoSolver(cp.Model):
