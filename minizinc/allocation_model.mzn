@@ -29,6 +29,7 @@ array[Task] of int: due;
 array[Task, Team] of int: compatible;
 array[int] of set of Task: same_allocation;
 array[int] of record(Team: team, Time: start_unavailable, Time: dur_unavailable): calendars;
+array[int] of record(Task: task, set of Task: successors): successors; % unused for this variant of the problem; see scheduling_model.mzn
 
 array[Task] of var Team: Alloc;  % Team allocated to each task
 

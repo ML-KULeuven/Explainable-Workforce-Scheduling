@@ -29,6 +29,7 @@ array[Task] of int: due;
 array[Task, Team] of int: compatible;
 array[int] of set of Task: same_allocation;
 array[int] of record(Team: team, Time: start_unavailable, Time: dur_unavailable): calendars;
+array[int] of record(Task: task, set of Task: successors): successors;
 
 array[Task] of var Team: Alloc;  % Team allocated to each task
 array[Task] of var Time: Start; % start time of each task
@@ -56,6 +57,11 @@ constraint forall(task in Task)(
     (released[task] <= Start[task]) /\ (Start[task] + duration[task]<= due[task])
 );
 
+% Adhere to precedence constraints
+constraint forall(succ_record in successors, other_task in succ_record.successors)(
+    Start[succ_record.task] + duration[succ_record.task] <= Start[other_task]
+);
+
 % A team is used if at least one task is assigned to it
 array[Team] of var bool: Used = [exists([Alloc[task] == team | task in Task]) | team in Team];
 % Time worked for each team, only if the team is used
@@ -69,5 +75,6 @@ solve minimize sum(duration) * nvalue(Alloc)
 
 output [ "Number of used teams:", show(sum(Used)), 
         "\nAllocation: ", show(Alloc),
+        "\nStart: ", show(Start),
        "\nTime worked: ", show(TimeWorked), 
        "\nDispersion: ", show(max(TimeWorked) - min(TimeWorked))];
