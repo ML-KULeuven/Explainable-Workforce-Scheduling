@@ -1,0 +1,31 @@
+% Generated from instance_53.json
+Team = {team_1, team_2, team_3, team_4, team_5, team_6, team_7, team_8, team_9, team_10, team_11, team_12, team_13, team_14, team_15, team_16, team_17, team_18};
+Task = {task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8, task_9, task_10, task_11, task_12};
+
+horizon = 426;
+duration = [75, 45, 60, 15, 15, 30, 45, 15, 15, 30, 15, 30];
+released = [241, 195, 53, 5, 144, 164, 118, 335, 351, 0, 0, 21];
+due = [376, 300, 173, 80, 219, 254, 223, 410, 426, 64, 45, 111];
+original_start = [271, 225, 83, 35, 174, 194, 148, 365, 381, 4, 0, 51];
+compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+
+same_allocation = [{task_4, task_10}, {task_2, task_6}];
+
+calendars = [
+    (team: team_1, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_2, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_3, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_4, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_5, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_7, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_8, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_10, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_11, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_12, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_13, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_14, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_15, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_16, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_17, start_unavailable: 0, dur_unavailable: 3),
+    (team: team_18, start_unavailable: 0, dur_unavailable: 3),
+];

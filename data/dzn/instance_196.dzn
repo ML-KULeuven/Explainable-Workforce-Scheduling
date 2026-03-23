@@ -1,0 +1,15 @@
+% Generated from instance_196.json
+Team = {team_1, team_2, team_3, team_4, team_5, team_6, team_7, team_8, team_9, team_10, team_11, team_12, team_13, team_14, team_15, team_16, team_17, team_18};
+Task = {task_1};
+
+horizon = 45;
+duration = [15];
+released = [0];
+due = [45];
+original_start = [0];
+compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+
+same_allocation = [];
+
+calendars = [
+];

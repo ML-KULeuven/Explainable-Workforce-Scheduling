@@ -1,0 +1,17 @@
+% Generated from instance_228.json
+Team = {team_1, team_2, team_3, team_4, team_5, team_6, team_7, team_8, team_9, team_10, team_11, team_12, team_13, team_14, team_15, team_16, team_17, team_18, team_19};
+Task = {task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8, task_9, task_10};
+
+horizon = 477;
+duration = [15, 60, 15, 60, 45, 15, 15, 45, 45, 15];
+released = [23, 216, 55, 357, 0, 71, 179, 133, 87, 39];
+due = [98, 336, 130, 477, 75, 146, 254, 238, 192, 114];
+original_start = [53, 246, 85, 387, 0, 101, 209, 163, 117, 69];
+compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+
+same_allocation = [{task_7, task_8}];
+
+calendars = [
+    (team: team_10, start_unavailable: 0, dur_unavailable: 387),
+    (team: team_12, start_unavailable: 0, dur_unavailable: 387),
+];
