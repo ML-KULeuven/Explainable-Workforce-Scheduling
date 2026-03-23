@@ -1,0 +1,31 @@
+% Generated from instance_24_1.json
+Team = {team_1, team_2, team_3, team_4, team_5, team_6, team_7, team_8, team_9, team_10, team_11, team_12, team_13, team_14, team_15, team_16, team_17, team_18};
+Task = {task_1};
+
+horizon = 105;
+duration = [75];
+released = [0];
+due = [105];
+original_start = [0];
+compatible = array2d(Task, Team, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+
+same_allocation = [];
+
+calendars = [
+    (team: team_1, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_2, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_4, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_5, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_6, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_7, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_8, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_9, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_10, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_12, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_13, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_14, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_15, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_16, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_17, start_unavailable: 0, dur_unavailable: 270),
+    (team: team_18, start_unavailable: 0, dur_unavailable: 270),
+];
