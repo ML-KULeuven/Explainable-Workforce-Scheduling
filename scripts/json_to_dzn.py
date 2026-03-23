@@ -51,7 +51,6 @@ def format_set_of_enum(cases: Iterable[str]) -> str:
 
 def build_instance_dzn(json_path: Path) -> str:
     tasks_df, teams_df, same_allocation_groups = read_instance(str(json_path))
-    print(tasks_df[tasks_df['successors'].apply(lambda x: len(x) > 0)])
 
     # Stable ordering: map each input id to a compact enum case.
     task_ids = sorted(tasks_df["task_id"].tolist(), key=lambda x: str(x))
@@ -117,6 +116,7 @@ def build_instance_dzn(json_path: Path) -> str:
     lines.append(f"same_allocation = [{', '.join(same_groups_cases)}];")
     lines.append("")
 
+    lines.append(f"successors = [")
     for _, row in tasks_df[tasks_df['successors'].apply(lambda x: len(x) > 0)].iterrows():
         task = task_case(row['task_id'])
         lines.append(f"    (task: {task}, successors: {format_set_of_enum([task_case(succ) for succ in row['successors']])}),")
