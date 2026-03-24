@@ -63,17 +63,19 @@ constraint forall(succ_record in successors, other_task in succ_record.successor
 );
 
 % A team is used if at least one task is assigned to it
-array[Team] of var bool: Used = [exists([Alloc[task] == team | task in Task]) | team in Team];
-% Time worked for each team, only if the team is used
-array[Team] of var opt int: TimeWorked = [sum([duration[task] | task in Task where Alloc[task] == team]) | team in Team where Used[team]];
+var set of Team: UsedTeams = {team | team in Team where exists([Alloc[task] == team | task in Task])};
+array[Team] of var opt int: TimeWorked = [sum([duration[task] | task in Task where Alloc[task] == team]) | team in UsedTeams];
+
+% Redundant constraint to strengthen the model
+constraint card(UsedTeams) == nvalue(Alloc);
 
 % Bi-objective optimization problem:
 % - minimize the number of teams used
 % - minimize the unfairness between teams (difference in max/min time worked)
-solve minimize sum(duration) * nvalue(Alloc) 
+solve minimize sum(duration) * card(UsedTeams) 
               + (max(TimeWorked) - min(TimeWorked));
 
-output [ "Number of used teams:", show(sum(Used)), 
+output [ "Number of used teams:", show(card(UsedTeams)), 
         "\nAllocation: ", show(Alloc),
         "\nStart: ", show(Start),
        "\nTime worked: ", show(TimeWorked), 
