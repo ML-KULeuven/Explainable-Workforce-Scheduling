@@ -1,0 +1,26 @@
+{
+    "instance": "data/anon_jsons/instance_0.json",
+    "model_class": "AllocationModel",
+    "model_kwargs": {
+        "allow_unalloc": false,
+        "break_symmetries": [true, false],
+        "make_time_worked_vars": true
+    },
+    "objective": "nb_teams",
+    "solver_kwargs": [
+        {
+            "solver": "ortools",
+            "time_limit": 3600,
+            "num_workers": 1
+        },
+        {
+            "solver": "gurobi",
+            "time_limit": 3600,
+            "Threads": 1
+        },
+        {
+            "solver": "exact",
+            "time_limit": 3600
+        }
+    ]
+}
