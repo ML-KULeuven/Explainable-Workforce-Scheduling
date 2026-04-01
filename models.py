@@ -367,7 +367,7 @@ class SchedulingModel(AllocationModel):
             Get the lower bound of the model.
             Relax the problem by considering all teams equivalent, and compute the minimum number of equivalent teams.
         """
-        assert "solver" not in kwargs or kwargs["solver"] == "ortools", f"Solver for lb computation is always ortools, but user provided {kwargs['solver']}"
+        assert "solver" not in kwargs or kwargs["solver"] != "ortools", f"Solver for lb computation is always ortools, but user provided {kwargs['solver']}"
 
         capacity = cp.intvar(0, len(self.TEAMS), name="nb_teams")
         lb_solver = cp.SolverLookup.get("ortools") # need access to lower bound in case solve did not finish
@@ -398,7 +398,7 @@ class SchedulingModel(AllocationModel):
             starts = self.start.tolist()
             dur    = self.tasks['duration'].tolist()
             ends   = self.end.tolist()
-            heights = self.alloc[:, team_idx].tolist() # sneaky, height is 1 task is allocated to the team and 0 otherwise
+            # heights = self.alloc[:, team_idx].tolist() # sneaky, height is 1 task is allocated to the team and 0 otherwise
 
             # also add the dummy tasks that represent the calendar intervals
             if len(self.calendars) > 0:
@@ -406,8 +406,8 @@ class SchedulingModel(AllocationModel):
                 starts  += cal['start_unavailable'].astype(int).tolist()
                 dur     += (cal['end_unavailable'] - cal['start_unavailable']).astype(int).tolist()
                 ends    += cal['end_unavailable'].astype(int).tolist()
-                heights += [1] * len(cal['start_unavailable'])
-            constraints.append(cp.Cumulative(starts, dur, ends, heights, 1))
+                # heights += [1] * len(cal['start_unavailable'])
+            constraints.append(cp.NoOverlapOptional(starts, dur, ends, self.alloc[:, team_idx]))
 
         return constraints
 
