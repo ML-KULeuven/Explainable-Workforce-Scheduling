@@ -1,0 +1,17 @@
+{
+    "instance": "data/anon_jsons/instance_0.json",
+    "model_class": "SchedulingModel",
+    "model_kwargs": {
+        "allow_unalloc": false,
+        "break_symmetries": [true, false]
+    },
+    "compute_lb": [true,false],
+    "objective": "nb_teams",
+    "solver_kwargs": [
+        {
+            "solver": "ortools",
+            "time_limit": 3600,
+            "num_workers": 8
+        }
+    ]
+}
