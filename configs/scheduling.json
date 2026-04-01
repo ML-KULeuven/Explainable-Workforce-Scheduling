@@ -11,7 +11,8 @@
         {
             "solver": "ortools",
             "time_limit": 3600,
-            "num_workers": 8
+            "num_workers": 8,
+            "use_lns": false
         }
     ]
 }
