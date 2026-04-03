@@ -48,7 +48,7 @@ class SolverRunner(Runner):
 
         return {
             "model": model,
-            "solver_kwargs": solver_kwargs,
+            "solver_kwargs": dict(solver_kwargs),
             **timings
         }
     def description(self, config):
@@ -63,8 +63,8 @@ def solve_model(model, solver_kwargs, **timings):
     solver = cp.SolverLookup.get(solver_name, model)
     objective_trace = []
     def save_objectives():
-        nb_teams= sum(model.used.value())
-        dispersion = model.get_dispersion_value()
+        nb_teams= int(sum(model.used.value()))
+        dispersion = int(model.get_dispersion_value())
         objective_trace.append(
             (time.time()-t0, nb_teams, dispersion)
         )
