@@ -228,7 +228,7 @@ class AllocationModel(LexicoSolver):
         """
             Get the dispersion value of the last solve call.
         """
-        assert self.status().exitstatus != ExitStatus.NOT_RUN, "Model should be solved before getting dispersion value"
+        # assert self.status().exitstatus != ExitStatus.NOT_RUN, "Model should be solved before getting dispersion value"
         used = self.used.value()
         time_worked = self.time_worked.value()
         return max([tw for is_used,tw in zip(used, time_worked) if is_used]) - min([tw for is_used,tw in zip(used, time_worked) if is_used])

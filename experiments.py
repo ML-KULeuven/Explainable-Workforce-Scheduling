@@ -6,6 +6,7 @@ import time
 
 from models import AllocationModel, SchedulingModel
 from utils import read_instance
+import cpmpy as cp
 
 """
 model = AllocationModel(tasks, calendars, same_allocation)
@@ -27,7 +28,9 @@ class SolverRunner(Runner):
         if objective == "nb_teams":
             objective = model.get_nb_teams_objective()
         elif objective == "dispersion":
-            objective = model.get_dispersion_objective()
+            nb_teams_objective = model.get_nb_teams_objective()
+            dispersion_objective = model.get_dispersion_objective()
+            objective = nb_teams_objective * dispersion_objective.get_bounds()[1] + dispersion_objective
         else:
             raise ValueError(f"Unknown objective: {objective}")
         
@@ -51,11 +54,25 @@ class SolverRunner(Runner):
     def description(self, config):
         return f"Solving {config['instance'].split('/')[-1]} with " + ",".join(f"{k}={v}" for k, v in config['model_kwargs'].items()) + f" using {config['solver_kwargs']['solver']}"
 
-
+from cpmpy.solvers.ortools import OrtSolutionPrinter
 def solve_model(model, solver_kwargs, **timings):
 
+    solver_name = solver_kwargs.pop("solver")
+
     t0 = time.time()
-    res = model.solve(**solver_kwargs)
+    solver = cp.SolverLookup.get(solver_name, model)
+    objective_trace = []
+    def save_objectives():
+        nb_teams= sum(model.used.value())
+        dispersion = model.get_dispersion_value()
+        objective_trace.append(
+            (time.time()-t0, nb_teams, dispersion)
+        )
+
+    if solver_name == "ortools":
+        solver_kwargs['solution_callback'] = OrtSolutionPrinter(solver, display=save_objectives)
+
+    res = solver.solve(**solver_kwargs)
     t1 = time.time()
     return {
         "wallclock_time": t1 - t0,
@@ -63,6 +80,7 @@ def solve_model(model, solver_kwargs, **timings):
         "objective_value": model.objective_value(),
         "status": str(model.status().exitstatus),
         "satisfiable": res,
+        "objective_trace": objective_trace,
         **timings
     }
 

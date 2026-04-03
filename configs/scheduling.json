@@ -3,10 +3,10 @@
     "model_class": "SchedulingModel",
     "model_kwargs": {
         "allow_unalloc": false,
-        "break_symmetries": [true, false]
+        "break_symmetries": [true]
     },
-    "compute_lb": [true,false],
-    "objective": "nb_teams",
+    "compute_lb": [true],
+    "objective": "dispersion",
     "solver_kwargs": [
         {
             "solver": "ortools",
