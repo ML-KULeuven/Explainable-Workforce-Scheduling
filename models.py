@@ -347,7 +347,7 @@ class AllocationModel(LexicoSolver):
 
 class SchedulingModel(AllocationModel):
 
-    def __init__(self, tasks, calendars, same_allocation, allow_unalloc=False, dispersion_formulation=DispersionFormulation.MAX_MINUS_MIN, break_symmetries=True):
+    def __init__(self, tasks, calendars, same_allocation, allow_unalloc=False, dispersion_formulation=DispersionFormulation.MAX_MINUS_MIN, break_symmetries=True, add_redundant_constraint=True):
         
         # make start and end variables
         self.start, self.end = [], []
@@ -361,6 +361,15 @@ class SchedulingModel(AllocationModel):
         super().__init__(tasks, calendars, same_allocation, allow_unalloc, dispersion_formulation, break_symmetries)
         # super will call `self.overlapping_tasks()`
         self.add_soft_constraint(self.precedence_constraints())
+        if add_redundant_constraint:
+            self.add_redundant_constraint()
+
+    def add_redundant_constraint(self):
+
+        self.add(cp.Cumulative(
+            self.start, self.tasks['duration'].tolist(), self.end, demand=1, capacity=cp.sum(self.used)
+        ))
+
 
     def get_lower_bound(self, add_to_model=False, **kwargs):
         """
@@ -371,7 +380,7 @@ class SchedulingModel(AllocationModel):
 
         capacity = cp.intvar(0, len(self.TEAMS), name="nb_teams")
         lb_solver = cp.SolverLookup.get("ortools") # need access to lower bound in case solve did not finish
-        lb_solver += cp.Cumulative(self.start, self.tasks['duration'].tolist(), self.end, [1] * len(self.tasks), capacity)
+        lb_solver += cp.Cumulative(self.start, self.tasks['duration'].tolist(), self.end, [True] * len(self.tasks), capacity)
         lb_solver.minimize(capacity)
 
         res = lb_solver.solve()
@@ -398,7 +407,7 @@ class SchedulingModel(AllocationModel):
             starts = self.start.tolist()
             dur    = self.tasks['duration'].tolist()
             ends   = self.end.tolist()
-            # heights = self.alloc[:, team_idx].tolist() # sneaky, height is 1 task is allocated to the team and 0 otherwise
+            is_present = self.alloc[:, team_idx].tolist()
 
             # also add the dummy tasks that represent the calendar intervals
             if len(self.calendars) > 0:
@@ -406,8 +415,8 @@ class SchedulingModel(AllocationModel):
                 starts  += cal['start_unavailable'].astype(int).tolist()
                 dur     += (cal['end_unavailable'] - cal['start_unavailable']).astype(int).tolist()
                 ends    += cal['end_unavailable'].astype(int).tolist()
-                # heights += [1] * len(cal['start_unavailable'])
-            constraints.append(cp.NoOverlapOptional(starts, dur, ends, self.alloc[:, team_idx]))
+                is_present += [1] * len(cal['start_unavailable'])
+            constraints.append(cp.NoOverlapOptional(starts, dur, ends, is_present))
 
         return constraints
 
